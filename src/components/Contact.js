@@ -3,45 +3,87 @@ import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { NodeMinus } from "react-bootstrap-icons";
+import axios from "axios";
 
 export const Contact = () => {
-  const formInitialDetails = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: ''
-  }
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Send');
-  const [status, setStatus] = useState({});
+  const [firstname,setfirstname]=useState('');
+  const [lastname,setlastname]=useState('');
+  const [email,setemail]=useState('');
+  const [number,setnumber]=useState('');
+  const[message,setmessage]=useState('');
+  
+const handlefnText=(evt)=>{
+  setfirstname(evt.target.value);
+};
+const handlelnText=(evt)=>{
+  setlastname(evt.target.value);
+};
+const handleemailText=(evt)=>{
+  setemail(evt.target.value);
+};
+const handlenumberText=(evt)=>{
+  setnumber(evt.target.value);
+};
+const handlemessageText=(evt)=>{
+  setmessage(evt.target.value);
+};
 
-  const onFormUpdate = (category, value) => {
-      setFormDetails({
-        ...formDetails,
-        [category]: value
-      })
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setButtonText("Sending...");
-    let response = await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code === 200) {
-      setStatus({ succes: true, message: 'Message sent successfully'});
-    } else {
-      setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
-    }
+const handleSubmit=()=>{
+  var obj={
+firstname:firstname,
+lastname:lastname,
+email:email,
+number:number,
+message:message
   };
+  axios
+  .post('http://localhost:5000/Get',obj)
+  .then((res)=>{
+   alert('Thank you! for connecting with me'); 
+  })
+  .catch((err)=>{
+    alert(err);
+  });
+};
+
+ // const formInitialDetails = {
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   phone: '',
+  //   message: '',
+  // }
+  // const [formDetails, setFormDetails] = useState(formInitialDetails);
+  // const [buttonText, setButtonText] = useState('Send');
+  // const [status, setStatus] = useState({});
+
+  // const onFormUpdate = (category, value) => {
+  //     setFormDetails({
+  //       ...formDetails,
+  //       [category]: value
+  //     })
+  // }
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setButtonText("Sending...");
+  //   let response = await fetch("http://localhost:5000/contact", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json;charset=utf-8",
+  //     },
+  //     body: JSON.stringify(formDetails),
+  //   });
+  //   setButtonText("Send");
+  //   let result = await response.json();
+  //   setFormDetails(formInitialDetails);
+  //   if (result.code === 200) {
+  //     setStatus({ succes: true, message: 'Message sent successfully'});
+  //   } else {
+  //     setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+  //   }
+  // };
 
   return (
     <section className="contact" id="connect">
