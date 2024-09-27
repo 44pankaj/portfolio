@@ -145,7 +145,7 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/header-img.svg";
-import What from '../assets/img/What.jpeg';
+import Pkm from '../assets/img/pkm.png';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
@@ -197,7 +197,7 @@ export const Banner = () => {
     }
   };
 
-  const images = [headerImg, What]; // List of images
+  const images = [headerImg, Pkm]; 
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

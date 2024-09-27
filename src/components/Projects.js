@@ -310,10 +310,10 @@ export const Projects = () => {
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
                         <div className="d-flex justify-content-center">
-                          <img src={resume2} alt="Resume" style={{ maxWidth: '100%', height: 'auto' }} />
+                          <img src={resume2} alt="Resume" style={{ maxWidth: '100%', height: '360px' }} />
                         </div>
                         <div className="d-flex justify-content-center mt-3">
-                          <img src={resume1} alt="Resume" style={{ maxWidth: '100%', height: 'auto' }} />
+                          <img src={resume1} alt="Resume" style={{ maxWidth: '100%', height: '10px' }} />
                         </div>
                       </Tab.Pane>
                     </Tab.Content>
